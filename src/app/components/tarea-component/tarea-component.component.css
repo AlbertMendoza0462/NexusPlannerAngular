@@ -1,0 +1,27 @@
+/* Estilos para la barra de navegación */
+.navbar {
+  margin-bottom: 20px; /* Espacio adicional entre la barra de navegación y el contenido */
+}
+
+/* Estilos para el contenido de la página */
+.container {
+  background-color: #f8f9fa; /* Color de fondo del contenido */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Estilos para la lista de tareas */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Estilos para el enlace activo en la barra de navegación */
+.nav-link.active {
+  font-weight: bold;
+}

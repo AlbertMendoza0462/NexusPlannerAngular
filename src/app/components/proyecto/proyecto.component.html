@@ -1,0 +1,171 @@
+<!-- Modal -->
+<div class="modal fade " id="proyectoModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Registro de proyecto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h1>Crea un proyecto</h1>
+        <h2>Datos del proyecto</h2>
+
+        <form #loginForm="ngForm" (ngSubmit)="guardarProyecto()">
+          <div>
+            <div class="form-group">
+              <label for="nombre">Nombre*</label>
+              <input type="text" id="nombre" name="nombre" [(ngModel)]="this.proyecto.nombre" class="form-control"
+                value="{{proyecto.nombre}}" placeholder="Ingrese el nombre">
+            </div>
+            <div class="form-group">
+              <label for="fechaFinal">Fecha de finalización*</label>
+              <input type="date" id="fechaFinal" name="fechaFinal" [(ngModel)]="this.proyecto.fechaFinal"
+                class="form-control" value="{{proyecto.fechaFinal}}" placeholder="Elija la fecha final">
+            </div>
+            <div class="form-group">
+              <label for="descripcion">Descripción</label>
+              <textarea id="descripcion" name="descripcion" [(ngModel)]="this.proyecto.descripcion" class="form-control"
+                value="{{proyecto.descripcion}}" placeholder="Ingrese la descripción"></textarea>
+            </div>
+          </div>
+          <main class="row">
+            <div class="col-md-8 my-4"> <!-- Agregado el div con la clase my-4 para el margen vertical -->
+              <div class="card p-3">
+                <h2>Colaboradores</h2>
+
+                <div class="form-group">
+                  <label for="correo">Buscar por nombre o correo:</label>
+                  <div class="input-group">
+                    <input type="text" id="correo" class="form-control" name="textoColaborador"
+                      [(ngModel)]="textoColaborador">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary espaciado-botones-guardar" type="button"
+                        (click)="buscarColaboradores()">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="encontrados.length > 0">
+                  <table class=" card table table-striped">
+                    <div *ngFor="let encontrado of encontrados">
+                      <tr>
+                        <td>{{encontrado.nombre}} {{encontrado.apellido}}</td>
+                        <td>{{encontrado.correo}}</td>
+                        <td>
+                          <span class="accion-boton" (click)="agregarColaborador(encontrado)">Agregar</span>
+                        </td>
+                      </tr>
+                    </div>
+                  </table>
+                </div>
+
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Correo</th>
+                      <th scope="col">Telefono</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let colaborador of proyecto.colaboradores">
+                    <td>{{colaborador.nombre}} {{colaborador.apellido}}</td>
+                    <td>{{colaborador.correo}}</td>
+                    <td>{{colaborador.telefono}}</td>
+                    <td>
+                      <span class="accion-boton espaciado-botones"
+                        (click)="eliminarColaborador(colaborador)">Borrar</span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </main>
+          <main class="row" *ngIf="proyecto.proyectoId > 0">
+            <div class="col-md-8 my-4"> <!-- Agregado el div con la clase my-4 para el margen vertical -->
+              <div class="card p-3">
+                <h2>Tareas</h2>
+                <div>
+                  <button type="button" class="btn btn-warning" data-toggle="modal"
+                    data-target="#exampleModalCenter">Agregar</button>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Colaborador</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let tarea of proyecto.tareas">
+                    <td>{{tarea.nombre}}</td>
+                    <td>{{tarea.usuario.nombre}} {{tarea.usuario.apellido}}</td>
+                    <td>
+                      <span class="accion-boton espaciado-botones" (click)="eliminarTarea(tarea)">Borrar</span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </main>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Registro de tareas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="form-group">
+            <label for="nombreTarea">Nombre*</label>
+            <input type="text" id="nombreTarea" name="nombreTarea" [(ngModel)]="this.tarea.nombre" class="form-control"
+              value="{{tarea.nombre}}" placeholder="Ingrese el nombre">
+          </div>
+          <div class="form-group">
+            <label for="encargado">Encargado</label>
+            <select id="encargado" name="encargado" [(ngModel)]="this.tarea.usuarioId" class="form-control"
+              value="{{tarea.usuarioId}}" placeholder="Elija la fecha final">
+              <option *ngFor="let colaborador of proyecto.colaboradores" value="{{colaborador.usuarioId}}">
+                {{colaborador.nombre}} {{colaborador.apellido}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fechaFinalTarea">Fecha de finalización*</label>
+            <input type="date" id="fechaFinalTarea" name="fechaFinalTarea" [(ngModel)]="this.tarea.fechaFinal"
+              class="form-control" value="{{tarea.fechaFinal}}" placeholder="Elija la fecha final">
+          </div>
+          <div class="form-group">
+            <label for="descripcionTarea">Descripción</label>
+            <textarea id="descripcionTarea" name="descripcionTarea" [(ngModel)]="this.tarea.descripcion"
+              class="form-control" value="{{tarea.descripcion}}" placeholder="Ingrese la descripción"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="agregarTarea()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

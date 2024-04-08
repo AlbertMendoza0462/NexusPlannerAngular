@@ -1,0 +1,62 @@
+<div *ngIf="proyecto.proyectoId > 0">
+  <app-proyecto [project]=proyecto></app-proyecto>
+</div>
+
+<div>
+  <button type="button" class="btn btn-secondary " data-toggle="modal" data-target="#proyectoModalCenter"
+    (click)="cargarProyectoVacio()">Nuevo Proyecto</button>
+</div>
+
+<h2>Mis proyectos</h2>
+
+<div class="d-flex flex-wrap">
+  <div *ngFor="let proyecto of misProyectos">
+    <div class="card border-1 m-2">
+      <div class="card-header row">
+        <p><strong>{{proyecto.nombre}}</strong></p>
+        <button type="button" class="btn btn-secondary " data-toggle="modal" data-target="#proyectoModalCenter"
+          (click)="cargarProyecto(proyecto)">Editar</button>
+      </div>
+      <div class="card-body">
+        <p>{{proyecto.descripcion}}</p>
+      </div>
+      <div class="card-footer">
+        <p>Terminará el {{proyecto.fechaFinal}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<h2>Otros proyectos</h2>
+<div class="d-flex flex-wrap">
+  <div *ngFor="let proyecto of otrosProyectos">
+    <div class="card border-1 m-2">
+      <div class="card-header row">
+        <p><strong>{{proyecto.nombre}}</strong></p>
+        <button type="button" class="btn btn-secondary " data-toggle="modal" data-target="#proyectoModalCenter"
+          (click)="cargarProyecto(proyecto)">Editar</button>
+      </div>
+      <div class="card-body">
+        <p>{{proyecto.descripcion}}</p>
+      </div>
+      <div class="card-footer">
+        <p>Terminará el {{proyecto.fechaFinal}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<h2>Mis tareas pendientes</h2>
+<div class="d-flex flex-wrap">
+  <div *ngFor="let tarea of tareas">
+    <div class="card border-1 m-2">
+      <div class="card-header">
+        <p><strong>{{tarea.nombre}}</strong></p>
+      </div>
+      <div class="card-body">
+        <p>{{tarea.descripcion}}</p>
+      </div>
+      <div class="card-footer">
+        <p>Terminará el {{tarea.fechaFinal}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<h1>Tu cuenta</h1>
+<h2>Correo</h2>
+
+{{usuario.correo}}
+
+<h2>Datos personales</h2>
+
+<form #loginForm="ngForm" (ngSubmit)="updateUsuario()">
+  <div class="form-group">
+    <label for="nombre">Nombre*</label>
+    <input type="text" id="nombre" name="nombre" [(ngModel)]="this.usuario.nombre" class="form-control" value="{{usuario.nombre}}" placeholder="Ingrese el nombre">
+  </div>
+  <div class="form-group">
+    <label for="apellido">Apellido*</label>
+    <input type="text" id="apellido" name="apellido" [(ngModel)]="this.usuario.apellido" class="form-control" value="{{usuario.apellido}}" placeholder="Ingrese el apellido">
+  </div>
+  <div class="form-group">
+    <label for="telefono">Telefono</label>
+    <input type="text" id="telefono" name="telefono" [(ngModel)]="this.usuario.telefono" class="form-control" value="{{usuario.telefono}}" placeholder="Ingrese el telefono">
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+  <input type="button" class="btn btn-danger" (click)="cerrarSesion()" value="Cerrar sesión" />
+</form>

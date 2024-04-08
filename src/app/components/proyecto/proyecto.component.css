@@ -1,0 +1,31 @@
+.my-custom-scrollbar-proyecto {
+    position: relative;
+    height: 530px;
+    overflow: auto;
+  }
+
+  .espaciado-botones {
+    margin-right: 20px;
+    /* Ajusta el valor según el espacio deseado */
+  }
+
+  .accion-boton {
+    color: red;
+    border: none;
+    cursor: pointer;
+    background: none;
+  }
+
+  .accion-boton:hover {
+    text-decoration: underline;
+  }
+
+  .espaciado-botones {
+    margin-left: 40px;
+    /* Ajusta el valor según el espacio deseado */
+  }
+
+  .espaciado-botones-guardar {
+    margin-right: 70px;
+    /* Ajusta el valor según el espacio deseado */
+  }

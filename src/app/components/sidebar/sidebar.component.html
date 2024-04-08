@@ -1,0 +1,144 @@
+<!-- Estilos CSS personalizados -->
+<style>
+    .barra-horizontal {
+        background-color: #fafafa;
+        /* Color de fondo de la barra */
+        color: #8390FA;
+        /* Color del texto (blanco) */
+        padding: 10px 0;
+        /* Espaciado interior */
+        font-size: 24px;
+        /* Tamaño de la fuente */
+        border-bottom: 3px solid #9b9aa3;
+        /* Borde inferior oscuro */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        /* Sombra debajo del borde */
+        display: flex;
+        /* Establecer como flexbox */
+        justify-content: space-between;
+        /* Distribuir elementos de forma equitativa */
+        align-items: center;
+        /* Centrar verticalmente */
+    }
+
+    /* Estilo para el botón "Crear Proyecto" */
+    .boton-crear-proyecto {
+        background-color: #8390FA;
+        /* Color de fondo personalizado */
+        color: #ffffff;
+        /* Color del texto (blanco) */
+        border: none;
+        /* Sin borde */
+        padding: 8px 16px;
+        /* Espaciado interior */
+        font-size: 18px;
+        /* Tamaño de la fuente */
+        border-radius: 5px;
+        /* Borde redondeado */
+    }
+
+    .boton-crear-proyecto:hover {
+        background-color: #713cb3;
+        /* Color de fondo al pasar el mouse */
+    }
+
+    /* Estilo para la barra lateral */
+    .barra-lateral {
+        background-color: #8390FA;
+        /* Color de fondo de la barra */
+        min-height: 100vh;
+        /* Altura mínima igual a la del viewport */
+        padding-top: 20px;
+        /* Espacio superior */
+    }
+
+    /* Estilo para los botones de la valla vertical */
+    .boton-valla {
+        color: #000000;
+        /* Color del texto en los botones */
+    }
+
+    .boton-valla.active,
+    .boton-valla:hover {
+        background-color: #f9fcfe;
+        /* Color de fondo al pasar el mouse o activo */
+        border-color: #b7bec5;
+        /* Color del borde */
+        color: #000000;
+        /* Color del borde */
+    }
+
+    /* Estilo específico para el botón "Principal" */
+    .boton-valla#v-pills-principal-tab.active,
+    .boton-valla#v-pills-principal-tab:hover {
+        background-color: #ffffff;
+        color: #000000;
+        /* Cambio de color de fondo al pasar el mouse o activo */
+    }
+
+    /* Estilo para el contenido de las pestañas */
+    .contenido-pestanas {
+        background-color: #f8f9fa;
+        /* Color de fondo del contenido */
+        padding: 20px;
+        /* Espacio interior */
+        border: 1px solid #dee2e6;
+        /* Borde del contenido */
+    }
+</style>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col barra-horizontal">
+                Nexus Planner
+                
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Columna de la barra lateral -->
+            <div class="col-md-3 barra-lateral">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <!-- Botón "Principal" con clase personalizada -->
+                    <a class="nav-link active boton-valla" id="v-pills-principal-tab" data-toggle="pill"
+                        href="#v-pills-principal" role="tab" aria-controls="v-pills-principal"
+                        aria-selected="true">Principal</a>
+                    <!-- Botón "Solicitud" con clase personalizada -->
+                    <a class="nav-link boton-valla" id="v-pills-solicitud-tab" data-toggle="pill"
+                        href="#v-pills-solicitud" role="tab" aria-controls="v-pills-solicitud"
+                        aria-selected="false">Solicitud</a>
+                    <!-- Botón "Cuenta" con clase personalizada -->
+                    <a class="nav-link boton-valla" id="v-pills-cuenta-tab" data-toggle="pill" href="#v-pills-cuenta"
+                        role="tab" aria-controls="v-pills-cuenta" aria-selected="false">Cuenta</a>
+                </div>
+            </div>
+            <!-- Contenido de las pestañas -->
+            <div class="col-md-9 contenido-pestanas">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <!-- Contenido de la pestaña "Principal" -->
+                    <div class="tab-pane fade show active" id="v-pills-principal" role="tabpanel"
+                        aria-labelledby="v-pills-principal-tab">
+                        <app-principal></app-principal>
+                    </div>
+                    <!-- Contenido de la pestaña "Solicitud" -->
+                    <div class="tab-pane fade" id="v-pills-solicitud" role="tabpanel"
+                        aria-labelledby="v-pills-solicitud-tab">
+
+                    </div>
+                    <!-- Contenido de la pestaña "Cuenta" -->
+                    <div class="tab-pane fade" id="v-pills-cuenta" role="tabpanel" aria-labelledby="v-pills-cuenta-tab">
+                        <app-cuenta></app-cuenta>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap JS (jQuery y Popper.js son requeridos) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>

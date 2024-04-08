@@ -1,0 +1,111 @@
+
+  <style>
+    .custom-background {
+      background-color: #8390FA; /* Color morado claro */
+      padding: 10px; /* Añadimos un poco de espacio alrededor del formulario */
+      border-radius: 20px; /* Añadimos esquinas redondeadas */
+
+      
+    }
+
+    .barra-horizontal {
+            background-color: #fafafc; /* Color de fondo de la barra */
+            color: #8390FA; /* Color del texto (blanco) */
+            padding: 10\px 0; /* Espaciado interior */
+            font-size: 24px; /* Tamaño de la fuente */
+            border-bottom: 3px solid #9b9aa3; /* Borde inferior oscuro */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Sombra debajo del borde */
+            
+        }
+  </style>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col barra-horizontal">
+                Nexus Planner
+            </div>
+        </div>
+    </div>
+
+  <div class="container">
+    <!-- Título y texto -->
+    <div class="row mt-2">
+      <div class="col-md-6">
+        <h3 class="text-center">¡Bienvenido a Nexus Planner, tu aliado definitivo en la gestión de proyectos en equipo!</h3>
+        <br>
+        <p>¿Estás listo para llevar tus proyectos al siguiente nivel? ProjectPulse es la solución que has estado buscando. Diseñado para equipos que aspiran a la excelencia, nuestro software transformará la forma en que gestionas tus proyectos, desde la concepción hasta la finalización.</p>
+      </div>
+      <div class="col-md-6">
+        <div class="row justify-content-end">
+          <div class="col-md-8">
+            <div class="card custom-background">
+              <div class="card-header"></div>
+              <div class="card-body">
+                <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                  <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="correo" class="form-control" id="correo" name="correo" [(ngModel)]="this.correo" placeholder="Introduce tu correo electrónico" required>
+                  </div>
+                  <label for="clave">Clave</label>
+                  <div class="input-group mb-3">
+                    <input type="clave" class="form-control" id="clave" name="clave" [(ngModel)]="this.clave" placeholder="Introduce tu contraseña" required>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <button  class="btn btn-warning btn-block">Crear una cuenta </button> 
+                  <button type="submit" class="btn btn-warning btn-block">Iniciar sesión</button> 
+                  <br> 
+                    
+                </form>
+                <div id="mensajeValidacion" class="mt-3"></div> <!-- Div para mostrar el mensaje de validación -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Texto debajo de la pantalla -->
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center">¿Por qué unirte a Nexus Planner?</h2>
+        <p class="text-center">-Organización Óptima: Mantén todos tus proyectos, tareas y equipos organizados en un solo lugar.</p>
+        <p class="text-center">-Colaboración en Tiempo Real: Comunícate y toma decisiones rápidamente con tu equipo.</p>
+        <p class="text-center">-Visibilidad Completa: Supervisa el progreso de tu proyecto con nuestros tableros intuitivos.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Font Awesome JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <script>
+    function validarFormulario() {
+      const correo = document.getElementById('correo').value;
+      const clave = document.getElementById('clave').value;
+      const mensajeValidacion = document.getElementById('mensajeValidacion');
+      
+      if (correo && clave) {
+        mensajeValidacion.innerHTML = '<div class="alert alert-success">¡Inicio de sesión exitoso!</div>';
+      } else {
+        mensajeValidacion.innerHTML = '<div class="alert alert-danger">Por favor, completa todos los campos.</div>';
+      }
+      
+      return false; // Para evitar que se envíe el formulario automáticamente
+    }
+
+    document.getElementById('togglePassword').addEventListener('click', function () {
+      const claveInput = document.getElementById('clave');
+      const type = claveInput.getAttribute('type') === 'clave' ? 'text' : 'clave';
+      claveInput.setAttribute('type', type);
+      this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+  </script>
+</body>
